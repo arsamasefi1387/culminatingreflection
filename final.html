@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ICS4U Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align: center;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .centered {
+      margin-top: 25vh;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .dim {
+      color: #888;
+      font-style: italic;
+    }
+
+    .card {
+      background-color: white;
+      padding: 40px;
+      margin: 60px auto;
+      border-radius: 20px;
+      max-width: 800px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #0077b6;
+      margin: 20px 0;
+    }
+
+    .messages ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .messages li {
+      background: #e3f2fd;
+      border-left: 5px solid #2196f3;
+      margin: 15px auto;
+      padding: 15px 20px;
+      border-radius: 6px;
+      max-width: 600px;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.4;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-weight: bold;
+      color: #2e7d32;
+      font-size: 1.2em;
+    }
+
+    .transition-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1em;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 20px 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-weight: 600;
+    }
+
+    .transition-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .memorable-quotes {
+      background: #fff3e0;
+    }
+
+    .memorable-quotes .messages li {
+      background: #fce4ec;
+      border-left: 5px solid #e91e63;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(-100%); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(100%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .slide-out {
+      animation: slideOut 0.5s ease-in forwards;
+    }
+
+    .slide-in {
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    /* Confetti */
+    .confetti-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="fake-error" class="centered">
+    <h1>Error 404</h1>
+    <h5>As always</h5>
+    <p>POWERSCHOOL failed to load the ICS4U final marks. </p>
+    <p class="dim">Retrying connection...</p>
+  </div>
+
+  <div id="thank-you-section" class="hidden card">
+    <h1>Thank You, Ms. Su!</h1>
+    <p>
+      Wait this was supposed to be an error wasn't it?
+    </p>
+    <h2>THANK YOU</h2>
+    <p>
+      for helping us through recursion, classes, unittests (both in class and
+      in python), and deadlines. You made the course unforgettable.
+    </p>
+    <div class="messages">
+      <ul>
+        <li>"Thank you for reading all of our (specifically someone's) unnecessary complicated and sometimes useless codes"</li>
+        <li>"Thank you for all the help with our high school class and sorry for all of the runtime errors"</li>
+        <li>"Thank you for letting and helping us in approaching practical
+            problems in python by bringing
+            the 'industry expert at home'
+            advices and documents! "</li>
+        <li>"Thank you for recommending food and giving us life lessons as
+            well"</li>
+        <li>"Thank you for getting along with not so funny jokes we usually
+            make(specifically someone, we
+            will let you guess who)"</li>
+      </ul>
+    </div>
+    <p style="font-style: italic; color: #666; font-size: 0.9em; margin-top: 20px;">
+      (No I did not have enough front end knowledge to refactor all of that 'thank you for' statements)
+    </p>
+    <button class="transition-btn" onclick="showMemorableQuotes()">Memories</button>
+    <p class="footer">The almost graduating class of 2025</p>
+  </div>
+
+  <div id="memorable-section" class="hidden card memorable-quotes">
+    <h1>Memorable Quotes from the Course</h1>
+    <p>
+      The things we'll never forget from ICS4U...
+    </p>
+    <div class="messages">
+      <ul>
+        <li>"PowerSchool developer is such a 'genius'"</li>
+        <li>"Based on industry expert at home..."</li>
+        <li>"I got traumatized with recursion"</li>
+      </ul>
+    </div>
+    <button class="transition-btn" onclick="showThankYou()">Back to Thank You</button>
+    <p class="footer">The almost graduating class of 2025</p>
+  </div>
+
+  <div class="confetti-container"></div>
+
+  <script>
+    // Fake error screen delay
+    setTimeout(() => {
+      document.getElementById('fake-error').style.display = 'none';
+      document.getElementById('thank-you-section').classList.remove('hidden');
+      startConfetti();
+    }, 3000);
+
+    // Confetti animation
+    function startConfetti() {
+      const container = document.querySelector('.confetti-container');
+      const colors = ['#ff8a80', '#ea80fc', '#8c9eff', '#80d8ff', '#a7ffeb', '#ccff90'];
+
+      for (let i = 0; i < 100; i++) {
+        let confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        confetti.style.top = '-20px';
+        container.appendChild(confetti);
+      }
+    }
+
+    function showMemorableQuotes() {
+      const thankYouSection = document.getElementById('thank-you-section');
+      const memorableSection = document.getElementById('memorable-section');
+      
+      thankYouSection.classList.add('slide-out');
+      
+      setTimeout(() => {
+        thankYouSection.classList.add('hidden');
+        thankYouSection.classList.remove('slide-out');
+        memorableSection.classList.remove('hidden');
+        memorableSection.classList.add('slide-in');
+      }, 500);
+    }
+
+    function showThankYou() {
+      const thankYouSection = document.getElementById('thank-you-section');
+      const memorableSection = document.getElementById('memorable-section');
+      
+      memorableSection.classList.add('slide-out');
+      
+      setTimeout(() => {
+        memorableSection.classList.add('hidden');
+        memorableSection.classList.remove('slide-out');
+        thankYouSection.classList.remove('hidden');
+        thankYouSection.classList.add('slide-in');
+      }, 500);
+    }
+  </script>
+</body>
+</html>
